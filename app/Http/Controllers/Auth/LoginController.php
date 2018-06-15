@@ -3,37 +3,83 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\AdminToken;
+use App\Utils\ApiUtils;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+    /**
+     * Método que implementa o login dos administradores
+     * @param  Request $request requisição
+     * @return json           
+     */
+    public function login(Request $request){
+        $validator = $this->validateLogin($request);
 
-    use AuthenticatesUsers;
+        if($validator->fails()){
+            return ApiUtils::response(true, $validator->messages()->first(),null);
+        }
+
+        $data = $request->all();
+
+        $admin = Admin::where('login',$data['login'])->first();
+
+        //verifica o login
+        if(!$admin instanceof Admin){
+            return ApiUtils::response(true,__('messages.login_invalid'),null);
+        }
+
+        //verifica senha
+        if(!password_verify($data['password'],$admin->password)){
+            return ApiUtils::response(true,__('messages.login_invalid'),null);
+        }
+
+        //cria token para administrador
+        $token = $this->refreshToken($admin);
+
+        //se ocorreu problema ao criar o token
+        if($token == null){
+            return ApiUtils::response(true,__('messages.internal_error'),null);
+        }
+
+        return ApiUtils::response(false,__('messages.logged_admin'),[
+                            'admin' => $admin,
+                            'token' => $token
+        ]);
+    }
+
+    private function validateLogin(Request $request){
+        $rules = [
+            'login' => 'email|required|string|max:255',
+            'password' => 'string|required|min:6|max:255'
+        ];
+    }
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
+     * Método utilizado para criar token para o administrador
+     * @param  Admin  $admin 
+     * @return string        token
      */
-    protected $redirectTo = '/home';
+    private function refreshToken(Admin $admin){
+        //deleta outros tokens
+        $admin->admin_tokens()->delete();
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
+        //cria token
+        $token = md5(uniqid(rand(), true));
+        //cria novo token de administrador
+        $adminToken  = new AdminToken;
+        $admintoken->admin = $admin->id;
+        $adminToken->token = $token;
+
+        try{
+            $adminToken->save();
+        }catch(Exception $e){
+            return ApiUtils::response(true,$e->getMessage(),null);
+            $token = null;
+        }
+
+        return $token;
     }
 }

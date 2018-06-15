@@ -33,7 +33,7 @@ class User extends Eloquent
 	protected $fillable = [
 		'name',
 		'email',
-		'nickname',
+		'address',
 		'image'
 	];
 

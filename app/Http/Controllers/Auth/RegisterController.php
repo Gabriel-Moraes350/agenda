@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\Admin;
+use App\Utils\ApiUtils;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -10,34 +11,25 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+    public function register(Request $request){
+        $validator = $this->validator($request->all());
 
-    use RegistersUsers;
+        if($validator->fails()){
+            return ApiUtils::response(true,$validator->messages()->first(),null);
+        }
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+        //busca login em outros administradores
+        $adminExistsLogin = Admin::where('login',$data['login'])
+                   ->first();
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
+        if($adminExistsLogin instanceof Admin){
+            return ApiUtils::response(true, __('messages.admin_exists'),null);
+        }
+
+        $admin = $this->create($request->all());
+
+        return ApiUtils::response(false,__('messages.created_admin'),$admin);
+
     }
 
     /**
@@ -50,8 +42,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'login' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6',
         ]);
     }
 
@@ -63,10 +55,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Admin::create([
             'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'login' => $data['login'],
+            'password' => $data['password'],
         ]);
     }
 }

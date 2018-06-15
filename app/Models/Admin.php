@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 14 Jun 2018 21:18:38 +0000.
+ * Date: Fri, 15 Jun 2018 15:50:29 +0000.
  */
 
 namespace App\Models;
@@ -15,10 +15,13 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property string $name
  * @property string $login
+ * @property string $active
  * @property string $password
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
+ * 
+ * @property \Illuminate\Database\Eloquent\Collection $admin_tokens
  *
  * @package App\Models
  */
@@ -34,6 +37,12 @@ class Admin extends Eloquent
 	protected $fillable = [
 		'name',
 		'login',
+		'active',
 		'password'
 	];
+
+	public function admin_tokens()
+	{
+		return $this->hasMany(\App\Models\AdminToken::class);
+	}
 }
