@@ -23,7 +23,9 @@ class UserService extends Controller{
 			'address' => $request->get('address'),
 			'name'	  => $request->get('name'),
 			'email'	=> $request->get('email'),
-			'phone' => $request->get('phone')
+			'phone' => $request->get('phone'),
+			'info'	=> $request->get('info')
+			
 		]);
 
 		$response = app()->handle($request);
@@ -43,7 +45,8 @@ class UserService extends Controller{
 			'address' => $request->get('address'),
 			'name'	  => $request->get('name'),
 			'email'	=> $request->get('email'),
-			'phone' => $request->get('phone')
+			'phone' => $request->get('phone'),
+			'info'	=> $request->get('info')
 		]);
 
 		$response = app()->handle($request);
@@ -92,7 +95,7 @@ class UserService extends Controller{
 
 		$page = 1;
 
-		if(isset($request->get('page'))){
+		if($request->get('page') !== null){
 			$page = $request->get('page');
 		}
 
@@ -112,7 +115,7 @@ class UserService extends Controller{
 
 		$page = 1;
 
-		if(isset($request->get('page'))){
+		if($request->get('page') != null){
 			$page = $request->get('page');
 		}
 

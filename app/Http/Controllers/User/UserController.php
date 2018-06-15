@@ -33,6 +33,7 @@ class UserController extends Controller{
 						$q->where('phone','like', '%'.$query.'%');
 					})
 					->orWhere('address','like','%'.$query . '%')
+					->orWhere('info','like','%'.$query.'%')
 					->with('user_phones')
 					->paginate(ITEMS_USER);
 
@@ -313,6 +314,7 @@ class UserController extends Controller{
 			'name' => 'required|string|max:255',
 			'email' => 'nullable|email|max:255',
 			'address' => 'nullable|string',
+			'info'	=> 'nullable|string',
 			'phone' => 'array|required'
 
 		];

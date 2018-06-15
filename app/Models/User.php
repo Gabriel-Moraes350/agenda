@@ -34,6 +34,7 @@ class User extends Eloquent
 		'name',
 		'email',
 		'address',
+		'info',
 		'image'
 	];
 

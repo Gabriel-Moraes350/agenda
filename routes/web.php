@@ -12,8 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
+
+Route::get('new-contact',function(){
+	return view('new-contact');
+})->name('new-contact');
+
+Route::get('sign-in',function(){
+	
+})->name('sign-in');
 
 /**
  * Grupo de serviço de rotas

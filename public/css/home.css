@@ -1,0 +1,77 @@
+.main__grid{
+  background-color: #ccc;
+  margin: 0 auto;
+  position: relative;
+  top: 80px;
+  height: 100%;
+}
+#new-contact{
+  cursor: pointer;
+}
+.search-form{
+  margin-top: 15px;
+  justify-content: center;
+  text-align: center;
+}
+
+.principal-title{
+  padding-top: 20px;
+  color: rgb(10, 10, 10);
+}
+
+.loading-img{
+  width: 120px;
+
+}
+
+#accordion{
+  margin: 10px auto;
+}
+
+#search{
+  width: 80%;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+
+.img-round{
+  border-radius: 50%;
+  width: 40px;
+}
+
+.btn-attr{
+  float: right;
+  line-height: 40px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.swal-footer{
+  text-align: center;
+}
+#pagination{
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@media screen and (max-width:768px){
+  [search-btn]{
+    margin: 10px auto;
+    margin-left: 20px;
+  }
+
+  #search{
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width:600px){
+  [search-btn]{
+    margin: 0;
+  }
+
+  #search{
+    margin: 0;
+  }
+}
