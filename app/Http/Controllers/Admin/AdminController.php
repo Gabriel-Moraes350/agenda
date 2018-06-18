@@ -116,13 +116,14 @@ class AdminController extends Controller{
 			return ApiUtils::response(true,__('messages.admin_invalid'),null);
 		}
 		try{
+			$admin->admin_tokens()->delete();
 			$admin->delete();
 
 		}catch(Exception $e){
 			return ApiUtils::response(true,$e->getMessage(),null);
 		}
 
-		return ApiUtils::response(false,__('messages.edit_admin'),null);
+		return ApiUtils::response(false,__('messages.remove_admin'),null);
 	}
 
 	/**
@@ -149,14 +150,15 @@ class AdminController extends Controller{
 	 * @return [type]         [description]
 	 */
 	private function queryUser($number){
-		return DB::table('user')->select('*')
+		$collection = DB::table('user')->select('user.id')
 									->join('user_phone',function($q){
 										$q->on('user.id','=','user_phone.user_id');
 										$q->where('user_phone.deleted_at','=',null);
 									})
 									->where('user.deleted_at',null)
 									->groupBy('user.id')
-									->having(DB::raw('count(user.id)'),'=',$number)->count();
+									->having(DB::raw('count(`user`.id)'),'=',$number)->get();
+		return count($collection);
 	}
 
 	/**

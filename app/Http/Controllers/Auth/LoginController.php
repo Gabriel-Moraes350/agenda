@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\AdminToken;
+use Illuminate\Http\Request;
 use App\Utils\ApiUtils;
+use Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -55,6 +57,8 @@ class LoginController extends Controller
             'login' => 'email|required|string|max:255',
             'password' => 'string|required|min:6|max:255'
         ];
+
+        return Validator::make($request->all(),$rules);
     }
 
     /**
@@ -70,7 +74,7 @@ class LoginController extends Controller
         $token = md5(uniqid(rand(), true));
         //cria novo token de administrador
         $adminToken  = new AdminToken;
-        $admintoken->admin = $admin->id;
+        $adminToken->admin_id = $admin->id;
         $adminToken->token = $token;
 
         try{

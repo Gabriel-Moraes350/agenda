@@ -12,6 +12,7 @@ return [
 	'number_existent' => '. Porém esses números já existem em outros contatos:',
 	'invalid_user' => 'Usuário  não encontrado',
 	'edit_user' => 'Contato editado com sucesso',
+	'search_user' => 'Busca de contatos',
 	'remove_user' => 'Contato removido com sucesso',
 	'add_image_user' => 'Imagem adicionada com sucesso',
 	'remove_image_user' => 'Imagem removida com sucesso',
@@ -24,8 +25,10 @@ return [
 	'admin_exists'	=> 'Login já existente',
 	'admin_invalid' => 'Administrador não encontrado',
 	'edit_admin' => 'Administrador editado com sucesso',
+	'remove_admin' => 'Administrador excluído com sucesso',
 	'overview'	=> 'overview',
 
 	//AUTH
-	'login_invalid' => 'Usuário ou senha inválidos'
+	'login_invalid' => 'Usuário ou senha inválidos',
+	'logged_admin' => 'Administrador logado com sucesso',
 ];

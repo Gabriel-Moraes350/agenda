@@ -35,9 +35,27 @@ class UserController extends Controller{
 					->orWhere('address','like','%'.$query . '%')
 					->orWhere('info','like','%'.$query.'%')
 					->with('user_phones')
+					->orderBy('name','asc')
 					->paginate(ITEMS_USER);
 
 		return ApiUtils::response(false,__('messages.search_user'),$list);
+	}
+
+	/**
+	 * Método utilizado para retornar um contato
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
+	public function get($id){
+
+		$user = User::with('user_phones')->find($id);
+
+		if(!$user instanceof User){
+			return ApiUtils::response(true,__('messages.invalid_user'),null);
+		}
+
+		return ApiUtils::response(false,__('messages.get_user'),$user);
+
 	}
 
 	/**
@@ -46,7 +64,7 @@ class UserController extends Controller{
 	 */
 	public function list(){
 
-		$list = User::with('user_phones')->paginate(ITEMS_USER);
+		$list = User::with('user_phones')->orderBy('name','asc')->paginate(ITEMS_USER);
 
 		return ApiUtils::response(false,__('messages.list_user'),$list);
 	}
@@ -196,7 +214,6 @@ class UserController extends Controller{
 		if($validator->fails()){
 			return ApiUtils::response(true,$validator->messages()->first(),null);
 		}
-
 		//começa transação com o banco
 		DB::beginTransaction();
 		//pega dados do request
@@ -206,7 +223,7 @@ class UserController extends Controller{
 							->whereNotIn('id',[$id])->first();
 		//caso exista usuário
 		if($userNameExists instanceof User){
-			return ApiUtils::response(true,__('messages.user_exists'),null);
+			return ApiUtils::response(true,__('messages.user_exists'),$userNameExists);
 		}
 		//edita o usuário
 		$user = User::find($id);

@@ -8,20 +8,19 @@
         <title>Agenda</title>
 
         <!-- Fonts -->
-        <link href="{{asset('css/libs/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('css/libs/fontawesome-all.min.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('css/home.css')}}" rel="stylesheet" type="text/css">
+        @include('links')
 
     </head>
     <body>
         <header>
             @include('navbar-menu')
         </header>
-        <main role="main">
+        <main role="main" class="main">
             <div class="container main__grid">
                 <h1 class="text-center principal-title">Agenda</h1>
+                <p class="text-center">Clique para no <strong>nome</strong> do contato para ver mais detalhes</p>
                 <div class="row justify-content-md-center">
-                    <form class="col-lg-12 search-form">                        
+                    <form class="col-lg-12 search-form" autocomplete="off">                        
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input type="text" class="form-control" placeholder="Busque um contato" id="search" >
@@ -30,20 +29,23 @@
                       </div>
                     </form>
                 </div>
+                
                 <div id="accordion" >
 
                 </div>
-                <div id="preloader" style="display:none;">
-                    <img src="/img/loading.gif" class="loading-img" />
-                </div>
+                
             </div>
             
         </main>
             
         <footer>
             
-           @include('footer');
+           @include('footer')
+           
+            <script src="{{asset('js/model/User.js')}}"></script>
 
+            <script src="{{ asset('js/libs/jquery.twbsPagination.min.js') }}"></script>
+            
             <script src="{{asset('js/controller/home-controller.js')}}"></script>
         </footer>
         

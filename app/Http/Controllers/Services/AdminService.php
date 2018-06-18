@@ -73,7 +73,7 @@ class AdminService extends Controller{
 	public function search(Request $request){
 
 		$page = 1;
-		if(isset($request->get('page'))){
+		if($request->get('page') != null){
 			$page = $request->get('page');
 		}
 
@@ -94,7 +94,7 @@ class AdminService extends Controller{
 	public function list(Request $request){
 
 		$page = 1;
-		if(isset($request->get('page'))){
+		if($request->get('page') != null){
 			$page = $request->get('page');
 		}
 

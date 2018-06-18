@@ -40,6 +40,11 @@ Route::namespace('User')->prefix('user')->group(function(){
 	Route::delete('/{id}', 'UserController@remove');
 
 	/**
+	 * Rota GET para retornar um contato
+	 */
+	Route::get('details/{id}','UserController@get');
+
+	/**
 	 * Rota PUT para editar um contato
 	 */
 	Route::put('/{id}','UserController@edit');

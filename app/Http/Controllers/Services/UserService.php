@@ -19,6 +19,7 @@ class UserService extends Controller{
 	 */
 	public function new(Request $request){
 
+
 		$request = Request::create('/api/user/','POST',[
 			'address' => $request->get('address'),
 			'name'	  => $request->get('name'),
@@ -41,7 +42,7 @@ class UserService extends Controller{
 	public function edit(Request $request){
 		$id = $request->get('id');
 
-		$request = Request::create('/api/user/edit/'. $id,'PUT',[
+		$request = Request::create('/api/user/'. $id,'PUT',[
 			'address' => $request->get('address'),
 			'name'	  => $request->get('name'),
 			'email'	=> $request->get('email'),
@@ -55,6 +56,21 @@ class UserService extends Controller{
 	}
 
 	/**
+	 * Método utilizado para chamar api que retorna um contato
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
+	 */
+	public function get(Request $request){
+
+		$request = Request::create('/api/user/details/'. $request->get('id'),'GET',[]);
+
+		$response = app()->handle($request);
+
+		echo $response->getContent();
+
+	}
+
+	/**
 	 * Método utilizado para adicionar imagens aos contatos
 	 * @param  Request $request 
 	 * @return json           
@@ -63,7 +79,7 @@ class UserService extends Controller{
 
 		$id = $request->get('id');
 
-		$request = Request::create('/api/user/image/'.$id ,'POST',[],[],['picture' => $request->file()]);
+		$request = Request::create('/api/user/image/'.$id ,'POST',[],[],['picture' => $request->file('picture')]);
 
 		$response = app()->handle($request);
 

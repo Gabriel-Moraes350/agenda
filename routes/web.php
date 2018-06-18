@@ -1,5 +1,5 @@
 <?php
-
+use App\Utils\Agenda;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,18 +10,59 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-Route::get('new-contact',function(){
-	return view('new-contact');
-})->name('new-contact');
-
-Route::get('sign-in',function(){
+Route::middleware('check.auth')->group(function(){
 	
-})->name('sign-in');
+	Route::get('/', function () {
+		$admin =  Agenda::getAdmin();
+	    return view('home',['admin' => $admin]);
+	})->name('home');
+
+	Route::get('novo-contato',function(){
+		$admin = Agenda::getAdmin();
+		return view('new-contact',['admin' => $admin]);
+	})->name('new-contact');
+
+	Route::get('editar-contato',function(){
+		$admin = Agenda::getAdmin();
+		return view('edit-contact',['admin' => $admin]);
+	})->name('edit-contact');
+
+	Route::get('login',function(){
+		return view('login');
+	})->name('login');
+});
+
+Route::middleware('admin.auth')->group(function(){
+	
+	Route::get('admin',function(){
+		$admin = Agenda::getAdmin();
+		return view('admin-home',['admin' => $admin]);
+	})->name('admin-home');
+
+	Route::get('lista-admin',function(){
+		$admin = Agenda::getAdmin();
+		return view('admin-list',['admin' => $admin]);
+	})->name('admin-list');
+
+	Route::get('novo-admin',function(){
+		$admin = Agenda::getAdmin();
+		return view('admin-home',['admin' => $admin]);
+	})->name('admin-new');
+
+	Route::get('meu-perfil',function(){
+		$admin = Agenda::getAdmin();
+		return view('admin-home',['admin' => $admin]);
+	})->name('my-profile');
+
+	Route::get('editar-admin',function(){
+		$admin = Agenda::getAdmin();
+		return view('admin-home',['admin' => $admin]);
+	})->name('edit-admin');
+
+
+
+});
+
 
 /**
  * Grupo de serviço de rotas
@@ -61,6 +102,11 @@ Route::namespace('Services')->group(function(){
 		 * Rota POST para listar os contatos
 		 */
 		Route::post('','UserService@list');
+
+		/**
+		 * Rota POST para retornar detalhes de um contato
+		 */
+		Route::post('get/','UserService@get');
 
 		/**
 		 * Rota POST para remover contatos

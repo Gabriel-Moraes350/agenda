@@ -5,11 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Novos contatos</title>
+        <title>Edição de contato</title>
 
         <!-- Fonts -->
-        <@include('links')
-
+        @include('links')
     </head>
     <body>
         <header>
@@ -17,8 +16,8 @@
         </header>
         <main class="main">
 
-             <div class="container row">
-                <h1 class="text-center col-lg-12 p-3">Novo contato</h1>
+             <div class="container row" >
+                <h1 class="text-center col-lg-12 p-3">Editar contato</h1>
                 <form class="col-lg-12" id="form-contact" novalidate enctype="multipart/form-data" autocomplete="off">
                     <div class="form-group">
                         <div class="image-preview-container">
@@ -78,18 +77,19 @@
                                 </div>
                           </div>
                       </div>
-                      <button class="btn btn-primary float-right p-2 w-25" type="submit" id="btn-submit">Criar</button>
+                      <button class="btn btn-primary float-right p-2 w-25" type="submit" id="btn-submit">Salvar</button>
                       <div class="clearfix"></div>
                 </form>
              </div>
         </main>
+   
            
         <footer>
             @include('footer')
             <script src="{{asset('js/libs/jquery.mask.min.js')}}"></script>
             <script src="{{asset('js/model/User.js')}}"></script>
             <script src="{{asset('js/controller/contact.js')}}"></script>
-            <script src="{{asset('js/controller/new-contact.js')}}"></script>
+            <script src="{{asset('js/controller/edit-contact.js')}}"></script>
         </footer>
     </body>
 </html>

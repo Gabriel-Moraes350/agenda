@@ -5,9 +5,7 @@
  */
 
 namespace App\Http\Controllers\Services;
-
 session_start();
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -26,11 +24,23 @@ class LoginService extends Controller{
 			'password' => $request->get('password')
 		]);
 
-		$response = json_decode(app()->handle($request),true);
+		$response = app()->handle($request);
 
-		unset($response['token']);
+		$decodedResponse = json_decode($response->getContent(),true);
 
-		echo $response->getContent();
+		if($decodedResponse['error'] == true){
+			echo $response->getContent();
+			die();
+		}
+
+		$_SESSION['admin'] = $decodedResponse['data']['token'];
+
+
+		unset($decodedResponse['data']['token']);
+
+		$response = json_encode($decodedResponse);
+
+		echo $response;
 
 	}
 
