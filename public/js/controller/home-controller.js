@@ -148,7 +148,7 @@ function populateListHtml(obj){
 		'<div class="card-header" id="heading'+index+'">'+
 		'   <h5 class="mb-0">'+
 		'     <img src="'+(user.getImage() != null ? IMAGE_FOLDER + user.getImage() :DEFAULT_USER_IMAGE)+'" class="img-round" alt="">'+
-		'     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse'+index+'" aria-expanded="false" aria-controls="collapse'+index+'">'+
+		'     <button class="btn btn-link collapsed text-truncate" data-toggle="collapse" data-target="#collapse'+index+'" aria-expanded="false" aria-controls="collapse'+index+'">'+
 		user.getName()+
 		'     </button>'+
 		'      <i class="fas fa-trash btn-attr" user-id="'+user.getId()+'" remove-contact></i>'+
@@ -171,9 +171,9 @@ function populateListHtml(obj){
 		'</thead>'+
 		'<tbody>'+
 		'<tr>'+
-		' <td>'+(user.getPhone()[0] != null ? user.getPhone()[0].phone : "")+'</td>'+
-		'<td>'+(user.getPhone()[1] != null ? user.getPhone()[1].phone : "")+'</td>'+
-		'<td>'+(user.getPhone()[2] != null ? user.getPhone()[2].phone : "")+'</td>'+
+		' <td>'+(user.getPhone()[0] != null ?"(" + user.getPhone()[0].phone.substr(0,2) + ")" + user.getPhone()[0].phone.substr(2,11) : "")+'</td>'+
+		'<td>'+(user.getPhone()[1] != null ?"(" + user.getPhone()[1].phone.substr(0,2) + ")" + user.getPhone()[1].phone.substr(2,11) : "")+'</td>'+
+		'<td>'+(user.getPhone()[2] != null ?"(" + user.getPhone()[2].phone.substr(0,2) + ")" + user.getPhone()[2].phone.substr(2,11) : "")+'</td>'+
 		'</tr>'+
 		' </tbody>'+
 		'</table>'+

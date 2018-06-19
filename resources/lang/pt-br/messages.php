@@ -4,6 +4,7 @@ return [
 
 	//geral
 	'internal_error' => 'Ocorreu um erro, tente novamente',
+	'no_permission' => 'Seu usuário não tem permissão para essa ação',
 
 	//CONTATO
 	'new_user' => 'Novo contato cadastrado com sucesso',
@@ -27,6 +28,8 @@ return [
 	'edit_admin' => 'Administrador editado com sucesso',
 	'remove_admin' => 'Administrador excluído com sucesso',
 	'overview'	=> 'overview',
+	'admin_inactive' => 'Administrador desativado',
+	'admin_unique' => 'Não pode-se ficar sem nenhum administrador',
 
 	//AUTH
 	'login_invalid' => 'Usuário ou senha inválidos',

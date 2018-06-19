@@ -27,9 +27,10 @@
                     </div>
                   </div>
                 </form>
-                <div class="table-responsive col-lg-12 mx-auto" id="list-content">
+                <div class="table-responsive bg-dark mx-auto" id="list-content">
                   
                 </div>
+                <ul id="pagination" class="pagination-sm mx-auto"></ul>
                 
             </div>
         </main>

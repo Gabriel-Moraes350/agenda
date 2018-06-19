@@ -38,6 +38,10 @@ class LoginController extends Controller
             return ApiUtils::response(true,__('messages.login_invalid'),null);
         }
 
+        if($admin->active == 'no'){
+            return ApiUtils::response(true,__('messages.admin_inactive'),null);
+        }
+
         //cria token para administrador
         $token = $this->refreshToken($admin);
 

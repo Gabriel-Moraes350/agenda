@@ -73,30 +73,34 @@ Route::namespace('User')->prefix('user')->group(function(){
 
 
 Route::namespace('Admin')->prefix('admin')->group(function(){
-	/**
-	 * Rota POST  para criar novos administradores
-	 */
-	Route::post('/','AdminController@new');
 
-	/**
-	 * Rota PUT para editar novos administradores
-	 */
-	Route::put('{id}','AdminController@edit');
+	Route::middleware('api.master')->group(function(){
+		/**
+		 * Rota POST  para criar novos administradores
+		 */
+		Route::post('/','AdminController@new');
 
-	/**
-	 * Rota DELETE para deletar um administrador
-	 */
-	Route::delete('{id}','AdminController@remove');
+		/**
+		 * Rota DELETE para deletar um administrador
+		 */
+		Route::delete('{id}','AdminController@remove');
 
-	/**
-	 * Rota GET para listar administradores
-	 */
-	Route::get('','AdminController@list');
+		/**
+		 * Rota PUT para editar administradores
+		 */
+		Route::put('{id}','AdminController@edit');
 
-	/**
-	 * Rota GET para buscar administradores
-	 */
-	Route::get('{query}','AdminController@search');
+		/**
+		 * Rota GET para listar administradores
+		 */
+		Route::get('','AdminController@list');
+
+		/**
+		 * Rota GET para buscar administradores
+		 */
+		Route::get('{query}','AdminController@search');
+	});
+	
 
 	/**
 	 * Rota GET para listar relatórios dos administradores

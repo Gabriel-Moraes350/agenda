@@ -14,6 +14,9 @@ class CheckAuth
     	$admin = null;
     	if(isset($_SESSION['admin'])){
     		$adminToken = AdminToken::where('token',$_SESSION['admin'])->first();
+            if(!$adminToken instanceof AdminToken){
+                 return redirect('/logout');
+            }
     		$admin = Admin::where('id',$adminToken->admin_id)->first();
     		if(!$admin instanceof Admin){
     			$admin = null;

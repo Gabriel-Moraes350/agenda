@@ -39,27 +39,30 @@ Route::middleware('admin.auth')->group(function(){
 		return view('admin-home',['admin' => $admin]);
 	})->name('admin-home');
 
-	Route::get('lista-admin',function(){
-		$admin = Agenda::getAdmin();
-		return view('admin-list',['admin' => $admin]);
-	})->name('admin-list');
+	Route::middleware('admin.master')->group(function(){
+		Route::get('lista-admin',function(){
+			$admin = Agenda::getAdmin();
+			return view('admin-list',['admin' => $admin]);
+		})->name('admin-list');
 
-	Route::get('novo-admin',function(){
-		$admin = Agenda::getAdmin();
-		return view('admin-home',['admin' => $admin]);
-	})->name('admin-new');
+		Route::get('novo-admin',function(){
+			$admin = Agenda::getAdmin();
+			return view('admin-new',['admin' => $admin]);
+		})->name('admin-new');
+
+		Route::get('editar-admin/{id}',function($id){
+			$admin = Agenda::getAdmin();
+			$profile = Agenda::getAdminById($id);
+			return view('admin-edit',['admin' => $admin,'my_profile' => false, 'profile' => $profile]);
+		})->name('edit-admin');
+	});
+
+	
 
 	Route::get('meu-perfil',function(){
 		$admin = Agenda::getAdmin();
-		return view('admin-home',['admin' => $admin]);
+		return view('admin-edit',['admin' => $admin,'my_profile' => true,'profile' => $admin]);
 	})->name('my-profile');
-
-	Route::get('editar-admin',function(){
-		$admin = Agenda::getAdmin();
-		return view('admin-home',['admin' => $admin]);
-	})->name('edit-admin');
-
-
 
 });
 

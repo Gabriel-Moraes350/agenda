@@ -38,11 +38,16 @@ class Admin extends Eloquent
 		'name',
 		'login',
 		'active',
-		'password'
+		'password',
+		'access_level'
 	];
 
 	public function admin_tokens()
 	{
 		return $this->hasMany(\App\Models\AdminToken::class);
+	}
+
+	public function setPasswordAttribute($value){
+		$this->attributes['password'] = password_hash($value,PASSWORD_DEFAULT);
 	}
 }

@@ -12,6 +12,7 @@ use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Utils\ApiUtils;
+use App\Utils\Agenda;
 use App\Http\Controllers\Controller;
 
 define('ITEMS_ADMIN',15);
@@ -74,7 +75,7 @@ class AdminController extends Controller{
 	 */
 	public function edit(Request $request,$id){
 		//valida dados
-		$validator = $this->validateAdmin($request);
+		$validator = $this->validateEditAdmin($request);
 
 		if($validator->fails()){
 			return ApiUtils::response(true,$validator->messages()->first(),null);
@@ -97,9 +98,27 @@ class AdminController extends Controller{
 			return ApiUtils::response(true,__('messages.admin_invalid'),null);
 		}
 
-		$admin->update($data);
+		$admin->name = $data['name'];
+		$admin->login = $data['login'];
+		if(!empty($data['password'])){
+			$admin->password = $data['password'];
+		}
 
-		return ApiUtils::response(false,__('messages.edit_admin'),null);
+		if(!empty($data['access_level'])){
+			$admin->access_level = $data['access_level'];
+		}
+		$adminLogged = Agenda::getAdmin();
+		if($adminLogged->id != $id){
+			$admin->active = $data['active'];
+		}
+
+		try{
+			$admin->save();
+		}catch(Exception $e){
+			return ApiUtils::response(true, $e->getMessage(),null);
+		}
+
+		return ApiUtils::response(false,__('messages.edit_admin'),$admin);
 
 	}
 
@@ -109,6 +128,13 @@ class AdminController extends Controller{
 	 * @return json     
 	 */
 	public function  remove($id){
+
+		$adminCount = Admin::count();
+
+		if($adminCount == 1){
+			return ApiUtils::response(true,__('messages.admin_unique'),null);
+		}
+
 		//busca admin
 		$admin = Admin::find($id);
 
@@ -170,6 +196,22 @@ class AdminController extends Controller{
 		$rules = [
 			'name' => 'required|string|max:255',
 			'password' => 'required|string|max:255|min:6',
+			'login' => 'required|email|max:255',
+			'active' => 'required|in:yes,no'
+		];
+
+		return Validator::make($request->all(),$rules);
+	}
+
+	/**
+	 * Método utilizado para validar administradores
+	 * @param  request $request 
+	 * @return validator          
+	 */
+	private function validateEditAdmin($request){
+		$rules = [
+			'name' => 'required|string|max:255',
+			'password' => 'nullable|string|max:255|min:6',
 			'login' => 'required|email|max:255',
 			'active' => 'required|in:yes,no'
 		];

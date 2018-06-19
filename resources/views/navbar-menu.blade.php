@@ -21,7 +21,7 @@
             <a class="dropdown-item" href="{{route('admin-new')}}">Cria administrador</a>
             <a class="dropdown-item" href="{{route('admin-list')}}">Lista administradores</a>
           @endif
-          <a class="dropdown-item" href="/logout">Sair</a>
+          <a class="dropdown-item" href="/logout" id="logout">Sair</a>
         </div>
       </div>
       @else

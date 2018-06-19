@@ -14,4 +14,43 @@ function getValueUrl(param){
 
 	return c;
 }
+function resetValidClasses(){
+	$.each($('.is-valid'), function(index, val) {
+		 $(val).removeClass('is-valid');
+	});
 
+	$.each($('.is-invalid'), function(index, val) {
+		 $(val).removeClass('is-invalid');
+	});
+}
+$('#logout').click(function(e){
+	e.preventDefault();
+	swal({
+	title: "Sair",
+		  text: "Você tem certeza que deseja sair? ://",
+		  icon: "warning",
+		  buttons:{
+			   cancel: {
+			    text: "Cancelar",
+			    value: false,
+			    visible: true,
+			    className: "",
+			    closeModal: true,
+			  },
+			  confirm: {
+			    text: "Confirmar",
+			    value: true,
+			    visible: true,
+			    className: "",
+			    closeModal: true
+			  }
+			},
+		  dangerMode: true,
+		  
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+		  	window.location.href = '/logout';
+		  }
+		});
+});

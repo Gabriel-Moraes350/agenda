@@ -22,7 +22,8 @@ class AdminService extends Controller{
 			'name' => $request->get('name'),
 			'login' => $request->get('login'),
 			'active' => $request->get('active'),
-			'password' => $request->get('password')
+			'password' => $request->get('password'),
+			'access_level' => $request->get('access_level')
 		]);
 
 		$response = app()->handle($request);
@@ -42,7 +43,9 @@ class AdminService extends Controller{
 			'name' => $request->get('name'),
 			'login' => $request->get('login'),
 			'active' => $request->get('active'),
-			'password' => $request->get('password')
+			'password' => $request->get('password'),
+			'access_level' => $request->get('access_level'),
+			'id'  => $id
 		]);
 
 		$response = app()->handle($request);

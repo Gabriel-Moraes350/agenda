@@ -71,6 +71,6 @@ class LoginService extends Controller{
 	public function logout(Request $request){
 		session_destroy();
 		
-		return redirect('/');
+		return redirect('/login');
 	}
 }

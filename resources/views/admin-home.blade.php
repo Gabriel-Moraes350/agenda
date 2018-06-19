@@ -32,7 +32,7 @@
                   </div>
                 </div>
 
-                <div class="chart-container col-lg-12 mb-1" style=" height:70vh; width:80vw">
+                <div class="chart-container col-lg-12 mb-1" style=" height:80vh; width:100vw">
                     <canvas id="chart" ></canvas>
                 </div>
             </div>

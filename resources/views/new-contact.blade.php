@@ -19,6 +19,7 @@
 
              <div class="container row">
                 <h1 class="text-center col-lg-12 p-3">Novo contato</h1>
+                <p class="text-center col-lg-12">Os campos de nome e pelo menos o <strong>primeiro</strong> telefone são <strong>obrigatórios</strong></p>
                 <form class="col-lg-12" id="form-contact" novalidate enctype="multipart/form-data" autocomplete="off">
                     <div class="form-group">
                         <div class="image-preview-container">
@@ -34,7 +35,7 @@
                         <input type="file" hidden class="form-control-file" id="picture-file">
                     </div>
                      <div class="form-group">
-                        <label for="name">Nome:</label>
+                        <label for="name">*Nome:</label>
                         <input type="text" class="form-control" id="name" placeholder="Nome" required>
                         <div class="invalid-feedback">
                           O nome é obrigatório.
@@ -56,10 +57,11 @@
                         <label for="info">Informações:</label>
                         <textarea class="form-control" id="info" rows="3" placeholder="Informações..."></textarea>
                       </div>
-                      <p>Telefones:</p>
+                      <p>*Telefones:</p>
                       <div class="form-row">
 
                           <div class="form-group col-md-4">
+
                               <input type="text" id="phone-1" class="form-control" placeholder="(99) 99999-9999" required>
                               <div class="invalid-feedback">
                                   O primeiro telefone é obrigatório.

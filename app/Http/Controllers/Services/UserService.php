@@ -25,8 +25,7 @@ class UserService extends Controller{
 			'name'	  => $request->get('name'),
 			'email'	=> $request->get('email'),
 			'phone' => $request->get('phone'),
-			'info'	=> $request->get('info')
-			
+			'info'	=> $request->get('info')			
 		]);
 
 		$response = app()->handle($request);

@@ -15,8 +15,9 @@ class Agenda{
 		return Request::get('admin');
 	}
 
-	public static function getAdminId(){
-		$admin = Request::get('admin');
-		return $admin->id;
+	public static function getAdminById($id){
+		$admin = Admin::find($id);
+		return $admin;
 	}
+
 }

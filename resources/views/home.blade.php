@@ -18,7 +18,7 @@
         <main role="main" class="main">
             <div class="container main__grid">
                 <h1 class="text-center principal-title">Agenda</h1>
-                <p class="text-center">Clique para no <strong>nome</strong> do contato para ver mais detalhes</p>
+                <p class="text-center">Clique no <strong>nome</strong> do contato para ver mais detalhes</p>
                 <div class="row justify-content-md-center">
                     <form class="col-lg-12 search-form" autocomplete="off">                        
                       <div class="form-group row">

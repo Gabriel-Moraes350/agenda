@@ -116,15 +116,6 @@ function resetForm(){
 	$('#close-btn').attr('hidden',true);
 }
 
-function resetValidClasses(){
-	$.each($('.is-valid'), function(index, val) {
-		 $(val).removeClass('is-valid');
-	});
-
-	$.each($('.is-invalid'), function(index, val) {
-		 $(val).removeClass('is-invalid');
-	});
-}
 
 
 function maskPhones(){

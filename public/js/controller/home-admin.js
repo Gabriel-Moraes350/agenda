@@ -40,7 +40,7 @@ function populateInfo(data){
 	let ctx = $('#chart');
 
 	let dataChart = {
-		labels:['Um telefone','Dois telefones','3 telefones'],
+		labels:['Um telefone','Dois telefones','Três telefones'],
 		datasets:[{
 			label:'Quantida de telefones por usuário',
 			data:[data.one_phone,data.two_phone,data.three_phone],

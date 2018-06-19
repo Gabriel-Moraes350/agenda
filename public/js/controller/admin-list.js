@@ -84,6 +84,19 @@ $(window).on('load',function(){
 		e.preventDefault();
 		callListApi(1,$('#search').val());
 	});
+
+
+	$(document).on('click','#edit-admin',function(e){
+		e.preventDefault();
+		let id = $(this).closest('td').attr('admin-id');
+
+		window.location.href = 'editar-admin/'+ id;
+	});
+
+	$(document).on('click','#edit-profile',function(e){
+		e.preventDefault();
+		window.location.href = 'meu-perfil';
+	});
 	
 });
 
@@ -167,7 +180,7 @@ function populateTable(data){
 		'<th width="30%" scope="col">Nome</th>'+
 		'<th width="33%" scope="col">Email</th>'+
 		' <th width="20%" scope="col">Nível</th>'+
-		'<th scope="col" width="12%"></th>'+
+		'<th scope="col" width="12%">Ações</th>'+
 		'</tr>'+
 		' </thead>'+
 		'<tbody>';
@@ -190,7 +203,7 @@ function populateTable(data){
 	});
 
 	string += '</tbody>'+
-		'</table><ul id="pagination" class="pagination-sm"></ul>';	
+		'</table>';	
 	
 	$('#list-content').html(string);
 }
