@@ -76,9 +76,8 @@
             
            @include('footer')
             <script src="{{asset('js/libs/bootstrap-toggle.min.js')}}"></script>
-            <script src="{{asset('js/model/Admin.js')}}"></script>
-            <script src="{{asset('js/controller/admin.js')}}"></script>
-            <script src="{{asset('js/controller/new-admin.js')}}"></script>
+            <script src="{{asset('js/controller/min/admin.min.js')}}"></script>
+            <script src="{{asset('js/controller/min/new-admin.min.js')}}"></script>
         </footer>
         
     </body>

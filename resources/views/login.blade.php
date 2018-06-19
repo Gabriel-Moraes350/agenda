@@ -23,7 +23,7 @@
             
            @include('footer')
            
-           <script src="{{asset('js/controller/login.js')}}"></script>
+           <script src="{{asset('js/controller/min/login.min.js')}}"></script>
             
         </footer>
         

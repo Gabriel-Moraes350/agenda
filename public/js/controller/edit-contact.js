@@ -4,7 +4,7 @@ $(window).on('load',function(){
 
 	callUserApi(userApi);
 
-	maskPhones();
+	
 	//criar um click quando se clica na imagem
 	$('#image-preview').click(function(){
 		returnFile().trigger('click');
@@ -195,6 +195,8 @@ function insertFields(user){
 		$('#close-btn').attr('hidden',false);
 		imageFromApi = true;
 	}
+
+	maskPhones();
 }
 
 function resetImage(){

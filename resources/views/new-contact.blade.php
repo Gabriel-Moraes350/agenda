@@ -89,9 +89,8 @@
         <footer>
             @include('footer')
             <script src="{{asset('js/libs/jquery.mask.min.js')}}"></script>
-            <script src="{{asset('js/model/User.js')}}"></script>
-            <script src="{{asset('js/controller/contact.js')}}"></script>
-            <script src="{{asset('js/controller/new-contact.js')}}"></script>
+            <script src="{{asset('js/controller/min/contact.min.js')}}"></script>
+            <script src="{{asset('js/controller/min/new-contact.min.js')}}"></script>
         </footer>
     </body>
 </html>

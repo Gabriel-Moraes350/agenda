@@ -42,11 +42,10 @@
             
            @include('footer')
            
-            <script src="{{asset('js/model/User.js')}}"></script>
 
             <script src="{{ asset('js/libs/jquery.twbsPagination.min.js') }}"></script>
             
-            <script src="{{asset('js/controller/home-controller.js')}}"></script>
+            <script src="{{asset('js/controller/min/home-controller.min.js')}}"></script>
         </footer>
         
     </body>

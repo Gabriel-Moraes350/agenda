@@ -42,7 +42,7 @@
             
            @include('footer')
            <script src="{{asset('js/libs/Chart.bundle.min.js')}}"></script>
-           <script src="{{asset('js/controller/home-admin.js')}}"></script>
+           <script src="{{asset('js/controller/min/home-admin.min.js')}}"></script>
         </footer>
         
     </body>

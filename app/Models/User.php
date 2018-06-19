@@ -42,4 +42,16 @@ class User extends Eloquent
 	{
 		return $this->hasMany(\App\Models\UserPhone::class);
 	}
+
+	public function setNameAttribute($value){
+		$this->attributes['name'] = clean($value);
+	}
+
+	public function setAddressAttribute($value){
+		$this->attributes['address'] = clean($value);
+	}
+
+	public function setInfoAttribute($value){
+		$this->attributes['info'] = clean($value);
+	}
 }

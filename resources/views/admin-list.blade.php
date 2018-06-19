@@ -38,10 +38,9 @@
         <footer>
             
            @include('footer')
-          <script src="{{asset('js/model/Admin.js')}}"></script>
           <script src="{{ asset('js/libs/jquery.twbsPagination.min.js') }}"></script>
           
-          <script src="{{asset('js/controller/admin-list.js')}}"></script>
+          <script src="{{asset('js/controller/min/admin-list.min.js')}}"></script>
         </footer>
         
     </body>

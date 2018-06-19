@@ -179,8 +179,8 @@ function populateListHtml(obj){
 		'</table>'+
 		'</div>'+
 		' <p><strong>Email: </strong><span>'+(user.email != null ? user.email : "Não informado")+'</span></p>'+
-		' <p><strong>Endereço: </strong><span>'+(user.address != null ? user.address : "Não informado")+'</span></p>'+
-		' <p><strong>Informações: </strong><span>'+(user.info != null ? user.info : "Não informado")+'</span></p>'+
+		' <p><strong>Endereço: </strong><span>'+(user.address != null && user.address != "" ? user.address : "Não informado")+'</span></p>'+
+		' <p><strong>Informações: </strong><span>'+(user.info != null && user.info != "" ? user.info : "Não informado")+'</span></p>'+
 		' </div>'+
 		'</div>'+
 		'</div>';

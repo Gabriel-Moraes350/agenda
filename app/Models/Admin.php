@@ -50,4 +50,8 @@ class Admin extends Eloquent
 	public function setPasswordAttribute($value){
 		$this->attributes['password'] = password_hash($value,PASSWORD_DEFAULT);
 	}
+
+	public function setNameAttribute($value){
+		$this->attributes['name'] = clean($value);
+	}
 }
