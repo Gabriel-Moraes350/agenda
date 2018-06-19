@@ -23,3 +23,5 @@ Usuário administrador padrão =
 login:admin@gmail.com
 
 senha:123123
+
+**Administradores com nível de acesso analista, somente tem acesso a home de admin e seu perfil
