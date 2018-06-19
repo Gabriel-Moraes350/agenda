@@ -8,6 +8,8 @@ Fazer clone do projeto;
 
 Rodar o comando "composer update";
 
+Após instalar todas dependencias, rodar o comando "php artisan key:generate";
+
 Baixar o dump do banco no repositório;
 
 Acessar arquivo .env e mudar configurações de acesso ao banco local na sua máquina;
