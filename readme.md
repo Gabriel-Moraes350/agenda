@@ -15,3 +15,9 @@ Acessar arquivo .env e mudar configurações de acesso ao banco local na sua má
 Rodar o comando "php artisan serve";
 
 Acessar "localhost:8000" e pronto!
+
+Usuário administrador padrão = 
+
+login:admin@gmail.com
+
+senha:123123
